@@ -4,49 +4,57 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    //camera movement variables
+    [Header("Variables")]
     public Transform player;
     public Vector3 offset;
-    public float xRotation = 0f;
-    public float yRotation = 0f;
-    
-
-
+    public float rotationSpeed = 4.0f;
+    private float mouseSensitivity = 100f;
+    private float xUpDown = 0f;
+   
     // Start is called before the first frame update
     void Start()
     {
         //lock mouse to game
         Cursor.lockState = CursorLockMode.Locked;
+
+        //setting camera position
+        offset = new Vector3(player.position.x, player.position.y + 8.0f, player.position.z + 7.0f);
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        //camera offset
-        transform.position = player.position + offset;
+        //look at player
+        transform.LookAt(player.position);
 
-        //camera clamps up/down & left/right
-        yPos();
-        xPos();
+        rotateAroundPlayer();
+        //upAndDown();
     }
 
-    public void yPos()
+    void rotateAroundPlayer()
     {
-        float mouseY = Input.GetAxis("Mouse Y") * 100f * Time.deltaTime;
+        //defining offset to move along x axis rotation around player
+        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, Vector3.up) * offset;
 
-        //rotation is flipped
-        xRotation -= mouseY;
+        //new camera position
+        transform.position = player.position + offset;
+    }
 
-        //clamp rotation to not be able to look too high up
-        xRotation = Mathf.Clamp(xRotation, 17.091f, 31.238f);
+    void upAndDown()
+    {
+        //call unity's mouse input
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+        //up/down rotation is flipped
+        xUpDown -= mouseY;
+
+        //clamp
+        xUpDown = Mathf.Clamp(xUpDown, 19.41f, 41f);
 
         //rotation
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        transform.localRotation = Quaternion.Euler(xUpDown, 0f, 0f);
     }
 
-    public void xPos()
-    {
-        
-    }
 }

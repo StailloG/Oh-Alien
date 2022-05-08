@@ -8,7 +8,7 @@ public class Interactions : MonoBehaviour
     public GameObject notification;
     public PickUp pickUpScript;
 
-    //boolean
+    [Header("Dog Interaction Variables")]
     public bool canEatCake = false;
     public bool cannotPickUpCake = false;
     public bool dogEatingCake = false;

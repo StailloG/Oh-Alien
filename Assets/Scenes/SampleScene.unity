@@ -211,6 +211,7 @@ MonoBehaviour:
   hasCake: 0
   hasKey: 0
   doorShedClosed: 1
+  shedDoor: {fileID: 4423045620712177515}
 --- !u!65 &7252638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4871,7 +4872,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2892277066600030942}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 2.59, y: -5.9207897, z: 21.32}
+  m_LocalPosition: {x: -4.99, y: -5.9207897, z: 21.32}
   m_LocalScale: {x: 17.956766, y: 17.95676, z: 17.95676}
   m_Children:
   - {fileID: 6453264661776507910}
@@ -5057,13 +5058,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4423045620712177513}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071069, w: 0.70710677}
+  m_LocalRotation: {x: -0.00000024214384, y: 0.00000032037494, z: -0.7071069, w: 0.70710677}
   m_LocalPosition: {x: -0.050960634, y: 1.4725453, z: 3.1280963}
   m_LocalScale: {x: -0.40348604, y: -1.6910598, z: -0.04254674}
   m_Children: []
   m_Father: {fileID: 543450653427288289}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!33 &2805511211748264766
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5352,6 +5353,7 @@ GameObject:
   - component: {fileID: 5361293284322862137}
   - component: {fileID: 9077926073384440160}
   - component: {fileID: 4423045620712177514}
+  - component: {fileID: 4423045620712177515}
   m_Layer: 0
   m_Name: door
   m_TagString: Shed
@@ -5372,6 +5374,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 24.432215, y: 2.571415, z: 52.40545}
   m_Center: {x: 11.216108, y: -0.07551402, z: -0.3750032}
+--- !u!95 &4423045620712177515
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4423045620712177513}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 04b382db55c4ac643a63fd147d75becf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &4495786525215284367
 Transform:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    //gameobjects
+    [Header("Variables")]
     public Interactions interactionsScript;
     public Transform hand; //player hands
     public GameObject notification;
@@ -16,21 +16,22 @@ public class PickUp : MonoBehaviour
     public GameObject key;
     public GameObject shed;
 
-    //box collider
+    [Header("Box Colliders")]
     public BoxCollider cakeBoxCol;
 
-    //pick up items booleans
+    [Header("Pick-up Item Bools")]
     public bool hasItemAlready = false;
     public bool canPickUpCake = false;
     public bool canPickUpKey = false;
     public bool canOpenShedDoor = false;
 
-    //has item booleans
+    [Header("Has Item Bools")]
     public bool hasCake = false;
     public bool hasKey = false;
 
-    //interaction booleans
+    [Header("Interaction Bools")]
     public bool doorShedClosed = true;
+    public Animator shedDoor;
 
 
     private void Start()
@@ -54,8 +55,9 @@ public class PickUp : MonoBehaviour
             doorShedClosed = false;
 
             //open shed door animation
-            shed.transform.localRotation = Quaternion.Euler(0, -73, -90);
-            shed.transform.localPosition = new Vector3(-1.46f, 1.47f, 4.69f);
+            shedDoor.Play("DoorOpening", 0);
+            //shed.transform.localRotation = Quaternion.Euler(0, -73, -90);
+            //shed.transform.localPosition = new Vector3(-1.46f, 1.47f, 4.69f);
 
             //cannot open shed door anymore
             canOpenShedDoor = false;
