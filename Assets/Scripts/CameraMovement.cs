@@ -18,7 +18,7 @@ public class CameraMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         //setting camera position
-        offset = new Vector3(player.position.x, player.position.y + 8.0f, player.position.z + 7.0f);
+        //offset = new Vector3(player.position.x, player.position.y + 8.0f, player.position.z + 7.0f);
 
     }
 
@@ -29,8 +29,8 @@ public class CameraMovement : MonoBehaviour
         //look at player
         transform.LookAt(player.position);
 
-        rotateAroundPlayer();
-        //upAndDown();
+        //rotateAroundPlayer();
+        upAndDown();
     }
 
     void rotateAroundPlayer()
