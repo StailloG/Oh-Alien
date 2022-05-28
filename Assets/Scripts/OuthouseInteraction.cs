@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class OuthouseInteraction : MonoBehaviour
 {
+    // Start is called before the first frame update
     [Header("Gameobjects")]
     public GameObject notification;
 
     [Header("Outhouse Bools")]
     public bool canOpenShedDoor = false;
     public bool doorShedClosed = true;
-    public bool hasItemAlready = false; //in pickup script
 
     [Header("Scripts")]
     public Interactions interactionsScript;
     public PickUp pickupScript;
-    
+
     [Header("Outhouse Animation")]
-    public Animator shedDoor;
+    public Animator openDoor;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -34,13 +34,13 @@ public class OuthouseInteraction : MonoBehaviour
     public void OpenOuthouse()
     {
         //if player interacts with outhouse
-        if (canOpenShedDoor == true && Input.GetKeyDown(KeyCode.Space) && hasItemAlready == false && interactionsScript.dogEatingCake == true)
+        if (canOpenShedDoor == true && Input.GetKeyDown(KeyCode.Space) && pickupScript.hasItemAlready == false && interactionsScript.dogEatingCake == true)
         {
             //already opened door
             doorShedClosed = false;
 
             //open shed door animation
-            shedDoor.Play("DoorOpening", 0);
+            openDoor.Play("DoorOpening", 0);
 
             //cannot open shed door anymore
             canOpenShedDoor = false;
@@ -50,7 +50,7 @@ public class OuthouseInteraction : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //if player collides with outhouse
-        if (other.tag == "Outhouse")
+        if (other.tag == "Player")
         {
             if (interactionsScript.dogEatingCake == false)
             {
