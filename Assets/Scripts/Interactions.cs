@@ -4,34 +4,39 @@ using UnityEngine;
 
 public class Interactions : MonoBehaviour
 {
-    //variables
+    [Header("GameObjects & Scripts")]
     public GameObject notification;
-    public PickUp pickUpScript;
+    public PickUp pickupScript;
 
     [Header("Dog Interaction Variables")]
     public bool canEatCake = false;
-    public bool cannotPickUpCake = false;
+    public bool fedCakeToDog = false;
     public bool dogEatingCake = false;
 
     public void Start()
     {
-        notification.SetActive(false);
+        //TODO dog barking at player
     }
 
     public void Update()
     {
-        //dog eating cake
-        if(pickUpScript.hasCake == true && canEatCake == true && Input.GetKeyDown(KeyCode.Space) && gameObject.tag == "Dog")
+        /*
+         * Player can feed dog the cake if:
+         * - Player has cake
+         * - Dog can eat cake
+         * - Spacebar is pressed
+         */
+        if (pickupScript.hasCake == true && canEatCake == true && Input.GetKeyDown(KeyCode.Space))
         {
-            cannotPickUpCake = true;
-            //place cake in front of dog
-            pickUpScript.cake.transform.parent = null;
-            pickUpScript.cake.transform.localPosition = new Vector3(0f, 0.3f, 0f);
-            pickUpScript.hasItemAlready = false;
-            pickUpScript.canPickUpCake = false;
-            pickUpScript.hasCake = false;
-            pickUpScript.cakeBoxCol.isTrigger = false;
-            //include dog eating cake animation
+            //used on PickUp script to disable notification onTrigger
+            fedCakeToDog = true;
+
+            //drop cake & place next to dog
+            pickupScript.cake.transform.parent = null;
+            pickupScript.cake.transform.localPosition = new Vector3(-2.45f, 0.47f, 8.32f);
+
+            //TODO animation of dog walking to cake
+            //TODO dog eating cake animation
 
             //player can now open outhouse
             dogEatingCake = true;
@@ -40,18 +45,19 @@ public class Interactions : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        //feed cake to dog
+        //if player has cake near dog
         if(other.tag == "Cake")
         {
+            //dog can eat cake
             canEatCake = true;
-            notification.SetActive(true);
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
         canEatCake = false;
-        notification.SetActive(true);
+
+        notification.SetActive(false);
 
     }
 }

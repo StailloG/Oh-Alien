@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Cake
   - Key
-  - Shed
   - Dog
+  - Outhouse
   layers:
   - Default
   - TransparentFX

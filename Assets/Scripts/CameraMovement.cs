@@ -30,7 +30,7 @@ public class CameraMovement : MonoBehaviour
         transform.LookAt(player.position);
 
         //rotateAroundPlayer();
-        upAndDown();
+        //upAndDown();
     }
 
     void rotateAroundPlayer()

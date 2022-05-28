@@ -8,29 +8,32 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    [Header("Variables")]
-    public Interactions interactionsScript;
-    public Transform hand; //player hands
+    [Header("Gameobjects to Interact With")]
+    public Transform hand;
     public GameObject notification;
     public GameObject cake;
     public GameObject key;
     public GameObject shed;
 
-    [Header("Box Colliders")]
+    [Header("Scripts")]
+    public Interactions interactionsScript;
+    //public OuthouseInteraction outhouseInterScript;
+
+    [Header("Box Collider")]
     public BoxCollider cakeBoxCol;
 
-    [Header("Pick-up Item Bools")]
+    [Header("Can Pick-up Item Bools")]
     public bool hasItemAlready = false;
     public bool canPickUpCake = false;
     public bool canPickUpKey = false;
     public bool canOpenShedDoor = false;
+    public bool doorShedClosed = true;
 
     [Header("Has Item Bools")]
     public bool hasCake = false;
-    public bool hasKey = false;
+    [SerializeField] private bool hasKey = false;
 
-    [Header("Interaction Bools")]
-    public bool doorShedClosed = true;
+    [Header("Animation for GameObjects")]
     public Animator shedDoor;
 
 
@@ -38,16 +41,18 @@ public class PickUp : MonoBehaviour
     {
         notification.SetActive(false);
 
+        //set trigger to false based off Interactions script
         cakeBoxCol = GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
     public void Update()
     {
-        //pickup items
+        //player can pickup these items
         pickUpItem(ref canPickUpCake, ref hasCake, cake);
         pickUpItem(ref canPickUpKey, ref hasKey, key);
 
+        
         //if player interacts with outhouse
         if (canOpenShedDoor == true && Input.GetKeyDown(KeyCode.Space) && hasItemAlready == false && interactionsScript.dogEatingCake == true)
         {
@@ -56,8 +61,6 @@ public class PickUp : MonoBehaviour
 
             //open shed door animation
             shedDoor.Play("DoorOpening", 0);
-            //shed.transform.localRotation = Quaternion.Euler(0, -73, -90);
-            //shed.transform.localPosition = new Vector3(-1.46f, 1.47f, 4.69f);
 
             //cannot open shed door anymore
             canOpenShedDoor = false;
@@ -73,7 +76,6 @@ public class PickUp : MonoBehaviour
         /* Disable notification when player has item */
         if (hasItemAlready == true)
         {
-            //disable notification
             notification.SetActive(false);
         }
 
@@ -84,14 +86,14 @@ public class PickUp : MonoBehaviour
     {
         if(canPickUpItem == true && Input.GetKeyDown(KeyCode.Space) && hasItemAlready == false)
         {
-            //has item
+            //player has an item
             hasItem = true;
 
             //pickup item
             item.transform.parent = hand.transform;
             item.transform.localPosition = Vector3.zero;
 
-            //cannot pickup another item
+            //player has an item - cannot pickup another item
             hasItemAlready = true;
 
             //set pickup to false
@@ -120,9 +122,18 @@ public class PickUp : MonoBehaviour
             notification.SetActive(true);
 
             //cannot pick up cake again if given to dog
-            if(interactionsScript.cannotPickUpCake == true)
+            if(interactionsScript.fedCakeToDog == true)
             {
+                //player cannot pick up cake
                 canPickUpCake = false;
+
+                //set cake trigger to false
+                cakeBoxCol.isTrigger = false;
+
+                //player doesn't have an item & cake anymore
+                hasItemAlready = false;
+                hasCake = false;
+
                 notification.SetActive(false);
             }
         }
@@ -131,22 +142,26 @@ public class PickUp : MonoBehaviour
         if (other.tag == "Key")
         {
             canPickUpKey = true;
+
             notification.SetActive(true);
         }
-        //if player collides with shed
-        if (other.tag == "Shed")
+
+        //if player collides with outhouse
+        if (other.tag == "Outhouse")
         {
-            canOpenShedDoor = true;
-            
             if (interactionsScript.dogEatingCake == false)
             {
                 notification.SetActive(false);
             }
+
             if (interactionsScript.dogEatingCake == true)
             {
+                canOpenShedDoor = true;
+
                 notification.SetActive(true);
             }
         }
+
     }
 
     public void OnTriggerExit(Collider other)
