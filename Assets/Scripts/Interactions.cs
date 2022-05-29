@@ -38,8 +38,22 @@ public class Interactions : MonoBehaviour
             //TODO animation of dog walking to cake
             //TODO dog eating cake animation
 
-            //player can now open outhouse
+            //dog is distracted so player can now open outhouse!
             dogEatingCake = true;
+
+            /*
+             * Set player holding item and having cake to false
+             * so that the player can open the outhouse door
+             */
+            //player cannot pick up cake
+            pickupScript.canPickUpCake = false;
+
+            //set cake trigger to false
+            pickupScript.cakeBoxCol.isTrigger = false;
+
+            //player doesn't have an item & cake anymore
+            pickupScript.hasItemAlready = false;
+            pickupScript.hasCake = false;
         }
     }
 

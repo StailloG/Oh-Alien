@@ -13,11 +13,9 @@ public class PickUp : MonoBehaviour
     public GameObject notification;
     public GameObject cake;
     public GameObject key;
-    public GameObject shed;
 
     [Header("Scripts")]
     public Interactions interactionsScript;
-    //public OuthouseInteraction outhouseInterScript;
 
     [Header("Box Collider")]
     public BoxCollider cakeBoxCol;
@@ -26,15 +24,15 @@ public class PickUp : MonoBehaviour
     public bool hasItemAlready = false;
     public bool canPickUpCake = false;
     public bool canPickUpKey = false;
-    public bool canOpenShedDoor = false;
-    public bool doorShedClosed = true;
+    public bool canOpenOuthouseDoor = false;
+    public bool doorShedClosed = true; //DEBUGGING
 
     [Header("Has Item Bools")]
     public bool hasCake = false;
     [SerializeField] private bool hasKey = false;
 
     [Header("Animation for GameObjects")]
-    public Animator shedDoor;
+    public Animator outhouseDoorOpening;
 
 
     private void Start()
@@ -52,19 +50,8 @@ public class PickUp : MonoBehaviour
         pickUpItem(ref canPickUpCake, ref hasCake, cake);
         pickUpItem(ref canPickUpKey, ref hasKey, key);
 
-        
-        //if player interacts with outhouse
-        if (canOpenShedDoor == true && Input.GetKeyDown(KeyCode.Space) && hasItemAlready == false && interactionsScript.dogEatingCake == true)
-        {
-            //already opened door
-            doorShedClosed = false;
-
-            //open shed door animation
-            shedDoor.Play("DoorOpening", 0);
-
-            //cannot open shed door anymore
-            canOpenShedDoor = false;
-        }
+        //player can open outhouse
+        outhouseNowOpen();
 
         /* drop items */
         if (hasItemAlready == true && Input.GetKeyDown(KeyCode.E))
@@ -112,6 +99,21 @@ public class PickUp : MonoBehaviour
         }
     }
 
+    public void outhouseNowOpen()
+    {
+        //if player interacts with outhouse
+        if (canOpenOuthouseDoor == true && Input.GetKeyDown(KeyCode.Space) && hasItemAlready == false && interactionsScript.dogEatingCake == true)
+        {
+            //already opened door
+            doorShedClosed = false; //DEBUGGING
+
+            //open shed door animation
+            outhouseDoorOpening.Play("DoorOpening", 0);
+
+            //cannot open shed door anymore
+            canOpenOuthouseDoor = false;
+        }
+    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -120,22 +122,6 @@ public class PickUp : MonoBehaviour
         {
             canPickUpCake = true;
             notification.SetActive(true);
-
-            //cannot pick up cake again if given to dog
-            if(interactionsScript.fedCakeToDog == true)
-            {
-                //player cannot pick up cake
-                canPickUpCake = false;
-
-                //set cake trigger to false
-                cakeBoxCol.isTrigger = false;
-
-                //player doesn't have an item & cake anymore
-                hasItemAlready = false;
-                hasCake = false;
-
-                notification.SetActive(false);
-            }
         }
         
         //if player collides with key
@@ -156,7 +142,7 @@ public class PickUp : MonoBehaviour
 
             if (interactionsScript.dogEatingCake == true)
             {
-                canOpenShedDoor = true;
+                canOpenOuthouseDoor = true;
 
                 notification.SetActive(true);
             }
@@ -168,7 +154,7 @@ public class PickUp : MonoBehaviour
     {
         canPickUpCake = false;
         canPickUpKey = false;
-        canOpenShedDoor = false;
+        canOpenOuthouseDoor = false;
 
         notification.SetActive(false);
     }

@@ -201,17 +201,16 @@ MonoBehaviour:
   notification: {fileID: 957973776}
   cake: {fileID: 1632597944}
   key: {fileID: 1501916147}
-  shed: {fileID: 4423045620712177513}
   interactionsScript: {fileID: 2892277066600030943}
   cakeBoxCol: {fileID: 1632597945}
   hasItemAlready: 0
   canPickUpCake: 0
   canPickUpKey: 0
-  canOpenShedDoor: 0
+  canOpenOuthouseDoor: 0
   doorShedClosed: 1
   hasCake: 0
   hasKey: 0
-  shedDoor: {fileID: 4423045620712177515}
+  outhouseDoorOpening: {fileID: 4423045620712177515}
 --- !u!65 &7252638
 BoxCollider:
   m_ObjectHideFlags: 0
