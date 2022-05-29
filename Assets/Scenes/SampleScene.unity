@@ -178,10 +178,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: a0cfef049cfc0c240a7ec367817974b2, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0cfef049cfc0c240a7ec367817974b2, type: 3}
 --- !u!1 &7252636 stripped
@@ -205,13 +201,17 @@ MonoBehaviour:
   notification: {fileID: 957973776}
   cake: {fileID: 1632597944}
   key: {fileID: 1501916147}
+  shed: {fileID: 4423045620712177513}
   interactionsScript: {fileID: 2892277066600030943}
   cakeBoxCol: {fileID: 1632597945}
   hasItemAlready: 0
   canPickUpCake: 0
   canPickUpKey: 0
+  canOpenShedDoor: 0
+  doorShedClosed: 1
   hasCake: 0
   hasKey: 0
+  shedDoor: {fileID: 4423045620712177515}
 --- !u!65 &7252638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5297,7 +5297,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notification: {fileID: 957973776}
   pickupScript: {fileID: 7252637}
-  outhouseScript: {fileID: 4423045620712177516}
   canEatCake: 0
   fedCakeToDog: 0
   dogEatingCake: 0
@@ -5577,7 +5576,6 @@ GameObject:
   - component: {fileID: 9077926073384440160}
   - component: {fileID: 4423045620712177514}
   - component: {fileID: 4423045620712177515}
-  - component: {fileID: 4423045620712177516}
   m_Layer: 0
   m_Name: door
   m_TagString: Outhouse
@@ -5617,24 +5615,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4423045620712177516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4423045620712177513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8740c3098100ab419fab7281d254c59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  notification: {fileID: 957973776}
-  canOpenShedDoor: 0
-  doorShedClosed: 1
-  interactionsScript: {fileID: 2892277066600030943}
-  pickupScript: {fileID: 7252637}
-  openDoor: {fileID: 4423045620712177515}
 --- !u!4 &4495786525215284367
 Transform:
   m_ObjectHideFlags: 0

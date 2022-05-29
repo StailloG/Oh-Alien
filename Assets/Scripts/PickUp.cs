@@ -13,9 +13,11 @@ public class PickUp : MonoBehaviour
     public GameObject notification;
     public GameObject cake;
     public GameObject key;
+    public GameObject shed;
 
     [Header("Scripts")]
     public Interactions interactionsScript;
+    //public OuthouseInteraction outhouseInterScript;
 
     [Header("Box Collider")]
     public BoxCollider cakeBoxCol;
@@ -24,10 +26,16 @@ public class PickUp : MonoBehaviour
     public bool hasItemAlready = false;
     public bool canPickUpCake = false;
     public bool canPickUpKey = false;
+    public bool canOpenShedDoor = false;
+    public bool doorShedClosed = true;
 
     [Header("Has Item Bools")]
     public bool hasCake = false;
     [SerializeField] private bool hasKey = false;
+
+    [Header("Animation for GameObjects")]
+    public Animator shedDoor;
+
 
     private void Start()
     {
@@ -46,7 +54,17 @@ public class PickUp : MonoBehaviour
 
         
         //if player interacts with outhouse
-       
+        if (canOpenShedDoor == true && Input.GetKeyDown(KeyCode.Space) && hasItemAlready == false && interactionsScript.dogEatingCake == true)
+        {
+            //already opened door
+            doorShedClosed = false;
+
+            //open shed door animation
+            shedDoor.Play("DoorOpening", 0);
+
+            //cannot open shed door anymore
+            canOpenShedDoor = false;
+        }
 
         /* drop items */
         if (hasItemAlready == true && Input.GetKeyDown(KeyCode.E))
@@ -128,7 +146,21 @@ public class PickUp : MonoBehaviour
             notification.SetActive(true);
         }
 
-        
+        //if player collides with outhouse
+        if (other.tag == "Outhouse")
+        {
+            if (interactionsScript.dogEatingCake == false)
+            {
+                notification.SetActive(false);
+            }
+
+            if (interactionsScript.dogEatingCake == true)
+            {
+                canOpenShedDoor = true;
+
+                notification.SetActive(true);
+            }
+        }
 
     }
 
@@ -136,6 +168,7 @@ public class PickUp : MonoBehaviour
     {
         canPickUpCake = false;
         canPickUpKey = false;
+        canOpenShedDoor = false;
 
         notification.SetActive(false);
     }

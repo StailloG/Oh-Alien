@@ -7,7 +7,6 @@ public class Interactions : MonoBehaviour
     [Header("GameObjects & Scripts")]
     public GameObject notification;
     public PickUp pickupScript;
-    public OuthouseInteraction outhouseScript;
 
     [Header("Dog Interaction Variables")]
     public bool canEatCake = false;
@@ -41,8 +40,6 @@ public class Interactions : MonoBehaviour
 
             //player can now open outhouse
             dogEatingCake = true;
-
-            outhouseScript.canOpenShedDoor = true;
         }
     }
 
