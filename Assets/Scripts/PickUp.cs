@@ -29,7 +29,7 @@ public class PickUp : MonoBehaviour
 
     [Header("Has Item Bools")]
     public bool hasCake = false;
-    [SerializeField] private bool hasKey = false;
+    public bool hasKey = false;
 
     [Header("Animation for GameObjects")]
     public Animator outhouseDoorOpening;

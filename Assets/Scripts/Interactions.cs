@@ -36,6 +36,8 @@ public class Interactions : MonoBehaviour
             pickupScript.cake.transform.localPosition = new Vector3(-2.45f, 0.47f, 8.32f);
 
             //TODO animation of dog walking to cake
+            this.transform.localPosition = new Vector3(-5.52f, -6f, 19.75f);
+
             //TODO dog eating cake animation
 
             //dog is distracted so player can now open outhouse!

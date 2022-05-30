@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a0cfef049cfc0c240a7ec367817974b2, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0cfef049cfc0c240a7ec367817974b2, type: 3}
 --- !u!1 &7252636 stripped
@@ -301,7 +305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ab191002cc8ab48ad4f43e8459b2c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.56
+      value: 7.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ab191002cc8ab48ad4f43e8459b2c8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -309,7 +313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ab191002cc8ab48ad4f43e8459b2c8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -49.11
+      value: 5.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ab191002cc8ab48ad4f43e8459b2c8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -381,7 +385,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132995852}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2.9800668, z: 5.032309}
@@ -391,6 +395,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d0ab191002cc8ab48ad4f43e8459b2c8, type: 3}
   m_PrefabInstance: {fileID: 90631899}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &132995855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132995852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2ee3e23cfd5d141aa84daa2f75f533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupScript: {fileID: 7252637}
+  canRide: 0
 --- !u!1001 &285694916
 PrefabInstance:
   m_ObjectHideFlags: 0
